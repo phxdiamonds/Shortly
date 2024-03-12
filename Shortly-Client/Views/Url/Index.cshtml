@@ -35,9 +35,20 @@
                     <td>
                         <a class="btn btn-outline-danger"
                            asp-controller="Url"
-                           asp-action="Remove">
+                           asp-action="Remove"
+                        asp-route-id="@url.Id">
                             Remove
                         </a>
+                        <a class="btn btn-outline-danger"
+                           asp-controller="Url"
+                           asp-action="Remove"
+                           asp-route-userId="@url.UserId"
+                        asp-route-linkId="@url.Id">
+                            Remove With 2 Parameters
+                        </a>
+                       @*  <a class="btn btn-outline-danger" href="/Url/Remove?linkIdToRemove=@url.Id">                           
+                            Remove old
+                        </a> *@
                     </td>
                 </tr>
             }           

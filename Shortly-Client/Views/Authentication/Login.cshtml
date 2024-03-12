@@ -1,6 +1,9 @@
-﻿@{
+﻿@model LoginVM;
+@{
     ViewData["Title"] = "Log In to your accoutn";
 }
+
+
 
 <div class="row">
     <div class="col-md-6 offset-md-3">
@@ -9,25 +12,47 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <form 
-                    asp-action="Login"
+                    asp-action="LoginSubmitted"
                     asp-controller="Authentication">
 
                     <div class="form-group mb-3">
                         <lablel for="emailAddress">Email Address</lablel>
-                        <input type="email" class=" form-control" id="emailAddress" placeholder="Enter Email" />
+                        <input type="email" name="emailAddress"  asp-for="EmailAddress" class=" form-control" id="emailAddress" placeholder="Enter Email" />
                         <small id="emailAddressSm" class="form-text text-muted">We'll never share your email with anyone else.</small> 
                     </div>
 
                     <div class="form-group mb-3">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="passsword" placeholder="Enter Password" />
+                        <input type="password" name="password" asp-for="Password" class="form-control" id="password" placeholder="Enter Password" />
                     </div>
 
-                    <button type ="submit" class="btn btn-outline-success mt-2 btn-login"> Log In</button>
+                   @*  <button type ="submit" class="btn btn-outline-success mt-2 btn-login"> Log In</button> *@
 
                 </form>
+                <button  onclick="login()" class="btn btn-outline-success mt-2 btn-login"> Log In</button>
             </div>
 
         </div>
     </div>
 </div>
+<script>
+    document.getElementById("emailAddress").focus();
+    //Here first i'm gonna have a function which will get the data from the form, $ indicates the jquery cl
+    function login() {
+        var emailAddress = $("#emailAddress").val();
+        var password = $("#password").val();
+
+        $.ajax({
+            url:'@Url.Action("LoginSubmitted", "Authentication")',
+            method:'POST',
+            dataType:'json',
+            data: { EmailAddress: emailAddress, Password: password },
+            success: function (data) {
+                console.log("Login Successful");
+            },
+            error: function (xhr, status, error) {
+                console.log("Login Failed");
+            }
+        })
+    }
+</script>

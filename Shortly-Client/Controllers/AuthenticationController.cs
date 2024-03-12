@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Shortly_Client.Data.ViewModels;
 
 namespace Shortly_Client.Controllers
 {
@@ -11,6 +12,12 @@ namespace Shortly_Client.Controllers
 
         public IActionResult Login()
         {
+            //var initial = new LoginVM(); you can remove this or just pass it through thsn
+            return View(new LoginVM());
+        }
+
+        public IActionResult LoginSubmitted(LoginVM loginVM)
+        {
             return View();
         }
 
@@ -18,5 +25,7 @@ namespace Shortly_Client.Controllers
         {
             return View();
         }
+
+        
     }
 }
