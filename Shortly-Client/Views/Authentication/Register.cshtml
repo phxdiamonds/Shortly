@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h4 class="form-header">Log in to your account</h4>
+
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <form asp-action="Register"
+                      asp-controller="Authentication">
+
+                    <div class="form-group mb-3">
+                        <lablel for="fullName">FullName</lablel>
+                        <input type="text" class=" form-control" id="fullName" placeholder="Emter FullName" />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <lablel for="emailAddress">Email Address</lablel>
+                        <input type="email" class=" form-control" id="emailAddress" placeholder="Enter Email" />
+                        <small id="emailAddressSm" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="passsword" placeholder="Enter Password" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="confirmpassword"> Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmpasssword" placeholder="Re-enter Password" />
+                    </div>
+
+                    <button type="submit" class="btn btn-outline-success mt-2 btn-register"> Register </button>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

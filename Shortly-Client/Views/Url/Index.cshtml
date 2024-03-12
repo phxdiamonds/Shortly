@@ -1,69 +1,46 @@
-﻿@* @model List<Url>;
+﻿@model List<GetUrlVM>;
 
 @{
-    var currentDateTime = DateTime.UtcNow;
+    ViewData["Title"] = "All Short Links";
 }
 
-<h4>Example</h4>
-@* <p>Original Link: @Model.OriginalLink</p>
-<p>Short Link: @Model.ShortLink</p>
-<p>Created: @currentDateTime</p>
-<p>Clicks: @Model.NoOfClicks</p>
-<p>ID: @Model.Id</p>
-<p>User Id: @Model.UserId</p> *@
-
-@* @foreach (var link in @Model)
-{
-    <p>Original Link: @link.OriginalLink</p>
-    <p>Short Link: @link.ShortLink</p>
-    <p>Clicks: @link.NoOfClicks</p>
-    <p>ID: @link.Id</p>
-    <p>User Id: @link.UserId</p>
-
-} *@ 
-
-@* ViewData*@
-
-@*
-    @{
-    var currentDateTime = DateTime.UtcNow;
-
-    var allUrls = ViewData["AllUrls"] as List<String>;
-}
-
-<h4>@ViewData["ShortenedUrl"]</h4>
-
-@foreach(var url in allUrls)
-{
-    <h3>@url</h3>
-}
-*@
-
-@*ViewBag*@
-
-@*@{
-    var currentDateTime = DateTime.UtcNow;
-
-    
-   
-}
-
-<h4>@ViewBag.ShortenedUrl</h4>
-
-@foreach(var url in@ViewBag.AllUrls)
-{
-    <h3>@url</h3>
-}
-*@
-
-@*TempData*@
-
-@{
-    var currentDateTime = DateTime.UtcNow;
-
-}
-
-@if (TempData["SuccessMessage"] != null)
-{
-    <h3>Success: @TempData["SuccessMessage"].ToString()</h3>
-}
+<div class="container">
+    <a  class="btn btn-outline-success"
+    asp-action="Index"
+    asp-controller="Home">
+    Add New
+</a>
+</div>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Original Url</th>
+            <th scope="col">Short Url</th>
+            <th scope="col">Clicks</th>
+            <th scope="col">User</th>
+            <th scope="col">Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var url in Model)
+            {
+                <tr>
+                    <td>@url.Id</td>
+                    <td>@url.OriginalLink</td>
+                    <td>@url.ShortLink</td>
+                    <td>@url.NoOfClicks</td>
+                    <td>@url.NoOfClicks</td>
+                    <td>
+                        <a class="btn btn-outline-danger"
+                           asp-controller="Url"
+                           asp-action="Remove">
+                            Remove
+                        </a>
+                    </td>
+                </tr>
+            }           
+        </tbody>
+    </table>
+</div>

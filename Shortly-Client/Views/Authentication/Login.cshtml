@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Log In to your accoutn";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h4 class="form-header">Log in to your account</h4>
+
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <form 
+                    asp-action="Login"
+                    asp-controller="Authentication">
+
+                    <div class="form-group mb-3">
+                        <lablel for="emailAddress">Email Address</lablel>
+                        <input type="email" class=" form-control" id="emailAddress" placeholder="Enter Email" />
+                        <small id="emailAddressSm" class="form-text text-muted">We'll never share your email with anyone else.</small> 
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="passsword" placeholder="Enter Password" />
+                    </div>
+
+                    <button type ="submit" class="btn btn-outline-success mt-2 btn-login"> Log In</button>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,8 +1,37 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "WelCome";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="landing py-5">
+    <div class ="container">
+        <div class= "row align-content-center">
+            <div class="col-lg-4">
+                <img src="~/img/Welcome-img.jpg" class="img-fluid" alt="" />
+            </div>
+            <div class="col-lg-8">
+                <h1 class="display-4"> More than just Shorter Links</h1>
+                <p class="lead">
+                    Build your brand's Recognition and get detailed insights onhow your links are performing.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="features" id="features">
+    <div class="container">
+        <div class="url-shorten-feature">
+            <!-- Update action attribute to point to ShortenAction in Homecontroller-->
+            <form class="url-shorten-form" itemid="url-shorten-form"  >
+                <div>
+                    <input type="text" class="url-point" name="urlToShorten" placeholder="Shorten a link here..."/>
+                    <span class="alert"></span>
+                </div>
+                <button type="submit" class="btn btn-lg" style="">Shorten It!</button>
+            </form>
+            <div class="url-shorten-results"></div>
+        </div>
+
+    </div>
+</section>
