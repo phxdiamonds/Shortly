@@ -1,4 +1,5 @@
-﻿@{
+﻿@model RegisterVM
+@{
     ViewData["Title"] = "Register";
 }
 
@@ -8,30 +9,34 @@
 
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <form asp-action="Register"
+                <form asp-action="RegisterUser"
                       asp-controller="Authentication">
 
                     <div class="form-group mb-3">
                         <lablel for="fullName">FullName</lablel>
-                        <input type="text" class=" form-control" id="fullName" placeholder="Emter FullName" />
+                        <input asp-for="FullName" type="text" class=" form-control" id="fullName" placeholder="Emter FullName" />
+                        <span asp-validation-for="FullName" class="text-danger"></span>
                     </div>
 
                     <div class="form-group mb-3">
                         <lablel for="emailAddress">Email Address</lablel>
-                        <input type="email" class=" form-control" id="emailAddress" placeholder="Enter Email" />
-                        <small id="emailAddressSm" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        <input asp-for="EmailAddress" type="email" class=" form-control" id="emailAddress" placeholder="Enter Email" />
+                        <small id="emailAddressSm" class="form-text text-muted">We'll never share your email with anyone else.</small><br />
+                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
                     </div>
 
                     <div class="form-group mb-3">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="passsword" placeholder="Enter Password" />
+                        <input asp-for="Password" type="password" class="form-control" id="passsword" placeholder="Enter Password" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                     <div class="form-group mb-3">
                         <label for="confirmpassword"> Confirm Password</label>
-                        <input type="password" class="form-control" id="confirmpasssword" placeholder="Re-enter Password" />
+                        <input asp-for="ConfirmPassword" type="password" class="form-control" id="confirmpasssword" placeholder="Re-enter Password" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                     </div>
 
-                    <button type="submit" class="btn btn-outline-success mt-2 btn-register"> Register </button>
+                    <button  type="submit" class="btn btn-outline-success mt-2 btn-register"> Register </button>
 
                 </form>
             </div>
