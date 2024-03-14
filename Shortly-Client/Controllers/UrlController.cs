@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Shortly_Client.Data.Models;
+
 using Shortly_Client.Data.ViewModels;
 
 namespace Shortly_Client.Controllers

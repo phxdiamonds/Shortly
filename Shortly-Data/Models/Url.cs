@@ -1,4 +1,10 @@
-﻿namespace Shortly_Client.Data.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Shortly_Data.Models
 {
     public class Url
     {

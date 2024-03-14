@@ -1,4 +1,10 @@
-﻿namespace Shortly_Client.Data.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Shortly_Data.Models
 {
     public class User
     {
@@ -11,6 +17,8 @@
         }
         public int Id { get; set; }
         public string Email { get; set; }
+
+        public string? FullName { get; set; }
 
 
         //for each user we are creating a list of links

@@ -1,7 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using Shortly_Client.Data;
+using Shortly_Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Configure the AppDbContext
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    //using the sql server, define db connection string 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+
+
+ });
 
 var app = builder.Build();
 
@@ -27,5 +40,8 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+//seed Database
+DbInitializer.SeedDefautData(app);  
 
 app.Run();

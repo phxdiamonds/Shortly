@@ -7,7 +7,7 @@ namespace Shortly_Client.Data.ViewModels
     {
         [Required(ErrorMessage ="Email address is required")]
         [CustomEmailValidator(ErrorMessage = "Email address is not valid(Custom)")]
-
+        
         public string EmailAddress { get; set; }
 
         [Required(ErrorMessage = "Password is required")]
