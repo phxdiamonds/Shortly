@@ -1,25 +1,39 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.EntityFrameworkCore;
 using Shortly_Client.Data.ViewModels;
+using Shortly_Data;
 
 namespace Shortly_Client.Controllers
 {
     public class UrlController : Controller
     {
+        private AppDbContext _context { get; set; }
+        public UrlController(AppDbContext context)
+        {
+
+            _context = context;
+
+        }
         public IActionResult Index()
         {
-            //Fake Db Data
 
-            var allUrls = new List<GetUrlVM>()
+            //in the view the data is getting from GetUrlVM so we have to map to GetUrlVM
+            var allUrlsFromDb = _context.Urls.Include(x => x.User).Select(x => new GetUrlVM()
             {
-                new GetUrlVM(){ Id =1, OriginalLink = "www.google.com", ShortLink = "www.google.com", NoOfClicks = 5, UserId = 1},
-                new GetUrlVM(){ Id =2, OriginalLink = "www.facebook.com", ShortLink = "www.facebook.com", NoOfClicks = 2, UserId = 3},
-                new GetUrlVM(){ Id =3, OriginalLink = "www.microsoft.com", ShortLink = "www.microsoft.com", NoOfClicks = 1, UserId = 2},
-                new GetUrlVM(){ Id =4, OriginalLink = "www.microsoft.com", ShortLink = "www.microsoft.com", NoOfClicks = 4, UserId = 4},
-                new GetUrlVM(){ Id =5, OriginalLink = "www.microsoft.com", ShortLink = "www.microsoft.com", NoOfClicks = 3, UserId = 5}
-            };
+                Id = x.Id,
+                OriginalLink = x.OriginalLink,
+                ShortLink = x.ShortLink,
+                NoOfClicks = x.NoOfClicks,
+                UserId = x.UserId,
 
-            return View(allUrls); //passing the get of urlvms to the view
+                User = x.User != null ? new GetUserVM() { Id = x.User.Id, FullName = x.User.FullName } : null
+
+            }).ToList();
+
+            return View(allUrlsFromDb); //passing the get of urlvms to the view
+
+            //Select * from Urls
+            //select Id, originallink, shortlink, noofclicks, userid from Urls
 
         }
 
@@ -34,12 +48,20 @@ namespace Shortly_Client.Controllers
 
         public IActionResult Remove(int id)
         {
-            return View();
+            //we are using the id which is passed from the view to this action, to remove the item from database
+
+            var url = _context.Urls.FirstOrDefault(x => x.Id == id);
+
+            if(url != null)
+            {
+                _context.Urls.Remove(url);
+                _context.SaveChanges();
+            }
+            
+            //so we have removed, now we need to return to index
+            return RedirectToAction("Index");
         }
 
-        public IActionResult Remove(int userId, int linkId)
-        {
-            return View();
-        }
+
     }
 }

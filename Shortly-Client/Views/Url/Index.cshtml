@@ -31,24 +31,14 @@
                     <td>@url.OriginalLink</td>
                     <td>@url.ShortLink</td>
                     <td>@url.NoOfClicks</td>
-                    <td>@url.NoOfClicks</td>
+                    <td>@(url.User != null ? url.User.FullName: "-")</td>
                     <td>
                         <a class="btn btn-outline-danger"
                            asp-controller="Url"
                            asp-action="Remove"
                         asp-route-id="@url.Id">
                             Remove
-                        </a>
-                        <a class="btn btn-outline-danger"
-                           asp-controller="Url"
-                           asp-action="Remove"
-                           asp-route-userId="@url.UserId"
-                        asp-route-linkId="@url.Id">
-                            Remove With 2 Parameters
-                        </a>
-                       @*  <a class="btn btn-outline-danger" href="/Url/Remove?linkIdToRemove=@url.Id">                           
-                            Remove old
-                        </a> *@
+                        </a> 
                     </td>
                 </tr>
             }           

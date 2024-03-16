@@ -13,5 +13,8 @@
         public int NoOfClicks { get; set; }
 
         public int? UserId { get; set; }
+
+        //Navigational Property
+        public GetUserVM? User { get; set; }
     }
 }

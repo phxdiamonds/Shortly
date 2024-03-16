@@ -1,13 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Shortly_Client.Data.ViewModels;
+using Shortly_Data;
 
 namespace Shortly_Client.Controllers
 {
+ 
+   
     public class AuthenticationController : Controller
     {
+        private AppDbContext _context;
+
+        public AuthenticationController(AppDbContext context)
+        {
+            _context = context;
+        }
+        
         public IActionResult Users()
         {
-            return View();
+            var users = _context.Users.Include(x => x.Urls).ToList();
+            
+            return View(users);
         }
 
         //renders the login form

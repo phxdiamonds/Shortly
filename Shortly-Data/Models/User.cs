@@ -22,7 +22,7 @@ namespace Shortly_Data.Models
 
 
         //for each user we are creating a list of links
-
+        //Navigational properties are used to get child or parent data of a model
         public List<Url> Urls { get; set; }
     }
 }

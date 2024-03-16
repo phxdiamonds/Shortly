@@ -20,10 +20,15 @@ namespace Shortly_Data.Models
 
         public int? UserId { get; set; }
 
-
         public DateTime DateCreated { get; set; }
 
 
         public DateTime? DateUpdated { get; set; }
+
+
+        //Define a navigational property for the user
+        //Used to get the user data for the url
+
+        public User? User { get; set; }
     }
 }
