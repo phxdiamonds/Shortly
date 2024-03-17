@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Shortly_Client.Data;
 using Shortly_Data;
+using Shortly_Data.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,14 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 
  });
+
+//Add Services to the container
+builder.Services.AddScoped<IUrlsService, UrlService>();
+builder.Services.AddScoped<IUsersService, UserService>();
+
+//Here it does check for all the files that are inheriting from the profile, so basically for all the automapper profiles and adds to them container so you can use them
+// in the controllers
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
