@@ -17,32 +17,32 @@ namespace Shortly_Data.Services
             _context = context;
         }
 
-        public User AddUser(User user)
+        public async  Task<User> AddUserAsync(User user)
         {
-            _context.Users.Add(user);
+           await _context.Users.AddAsync(user);
 
-            _context.SaveChanges();
+           await _context.SaveChangesAsync();
 
             return user;
         }
 
-        public List<User> GetUsers()
+        public async Task<List<User>> GetUsersAsync()
         {
-            var allUsers = _context.Users.Include(u => u.Urls).ToList();
+            var allUsers =  await _context.Users.Include(u => u.Urls).ToListAsync();
 
             return allUsers;
         }
 
-        User IUsersService.GetUserById(int id)
+        public async Task<User> GetUserByIdAsync(int id)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Id == id);
+            var user =  await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
 
             return user;
         }
 
-        User IUsersService.UpdateUser(int id, User user)
+        public  async  Task<User> UpdateUserAsync(int id, User user)
         {
-           var userDb = _context.Users.FirstOrDefault(u => u.Id == id);
+           var userDb = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
 
             if(userDb != null)
             {
@@ -55,14 +55,14 @@ namespace Shortly_Data.Services
             return userDb;
         }
 
-        void IUsersService.DeleteUser(int id)
+        public async Task  DeleteUserAsync(int id)
         {
-           var userDb = _context.Users.FirstOrDefault(u => u.Id == id);
+           var userDb = await  _context.Users.FirstOrDefaultAsync(u => u.Id == id);
 
             if(userDb != null)
             {
                 _context.Users.Remove(userDb);
-                _context.SaveChanges();
+               await  _context.SaveChangesAsync();
             }
 
 

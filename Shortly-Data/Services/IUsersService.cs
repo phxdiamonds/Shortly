@@ -10,19 +10,19 @@ namespace Shortly_Data.Services
     public interface IUsersService
     {
         //Returns all users
-        List<User> GetUsers();
+        Task<List<User>> GetUsersAsync();
 
         //Create User
-        User AddUser(User user);
+        Task<User> AddUserAsync(User user);
 
         //Get User by Id
-        User GetUserById(int id);
+        Task<User> GetUserByIdAsync(int id);
 
         //Update user
 
-        User UpdateUser(int id, User user);
+        Task<User> UpdateUserAsync(int id, User user);
 
         //Delete User
-        void DeleteUser(int id);
+        Task DeleteUserAsync(int id);
     }
 }

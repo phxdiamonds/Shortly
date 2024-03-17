@@ -21,7 +21,7 @@ namespace Shortly_Client.Controllers
             _mapper = mapper;
 
         }
-        public IActionResult Index()
+        public  async Task<IActionResult> Index()
         {
 
             //in the view the data is getting from GetUrlVM so we have to map to GetUrlVM
@@ -39,7 +39,7 @@ namespace Shortly_Client.Controllers
 
             //Replacing the above code with mapper
 
-            var allUrlsFromDb = _urlService.GetUrls();
+            var allUrlsFromDb = await  _urlService.GetUrlsAsync();
             var mappedUrls = _mapper.Map<List<GetUrlVM>>(allUrlsFromDb);
 
             //another way is doing is mapping both the source and destination
@@ -54,18 +54,18 @@ namespace Shortly_Client.Controllers
 
         //Tempdata
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
       
 
             return RedirectToAction("Index");
         }
 
-        public IActionResult Remove(int id)
+        public async Task<IActionResult> Remove(int id)
         {
             //we are using the id which is passed from the view to this action, to remove the item from database
 
-             _urlService.DeleteUrl(id);
+            await _urlService.DeleteUrlAsync(id);
 
             //so we have removed, now we need to return to index
             return RedirectToAction("Index");

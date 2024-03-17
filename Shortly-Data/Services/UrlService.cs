@@ -20,37 +20,37 @@ namespace Shortly_Data.Services
             _context = context;
         }
 
-        public Url AddUrl(Url url)
+        public async Task<Url> AddUrlAsync(Url url)
         {
-            _context.Urls.Add(url);
-            _context.SaveChanges();
+          await  _context.Urls.AddAsync(url);
+           await _context.SaveChangesAsync();
 
             return url;
         }
 
-        public List<Url> GetUrls()
+        public async  Task<List<Url>>  GetUrlsAsync()
         {
             //Get the urls from db with users so we can include the user with Include 
-            var allUrls = _context.Urls.Include(u => u.User).ToList();
+            var allUrls = await _context.Urls.Include(u => u.User).ToListAsync();
 
             return allUrls;
 
             
         }
 
-        Url IUrlsService.GetUrlById(int id)
+        public async Task<Url> GetUrlByIdAsync(int id)
         {
-            var url = _context.Urls.FirstOrDefault(u => u.Id == id);
+            var url = await _context.Urls.FirstOrDefaultAsync(u => u.Id == id);
             return url;
         }
 
-        Url IUrlsService.UpdateUrl(int id, Url url)
+        public async Task<Url> UpdateUrlAsync(int id, Url url)
         {
             //Get the Url frm db by id
             //update the values which we receive from front end
             //save changes
 
-            var urlDb = _context.Urls.FirstOrDefault(u => u.Id == id);
+            var urlDb =  await _context.Urls.FirstOrDefaultAsync(u => u.Id == id);
 
             if(urlDb != null)
             {
@@ -59,21 +59,21 @@ namespace Shortly_Data.Services
                 urlDb.DateUpdated = DateTime.UtcNow;
             }
 
-            _context.SaveChanges();
+           await _context.SaveChangesAsync();
 
             return urlDb;
 
 
         }
 
-        void IUrlsService.DeleteUrl(int id)
+        public async Task DeleteUrlAsync(int id)
         {
-            var urlDb = _context.Urls.FirstOrDefault(u => u.Id == id);
+            var urlDb = await _context.Urls.FirstOrDefaultAsync(u => u.Id == id);
 
             if(urlDb != null)
             {
                 _context.Urls.Remove(urlDb);
-                _context.SaveChanges();
+              await _context.SaveChangesAsync();
             }
         }
     }

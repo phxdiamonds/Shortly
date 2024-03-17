@@ -18,21 +18,21 @@ namespace Shortly_Client.Controllers
             _userService = userService;
         }
         
-        public IActionResult Users()
+        public async Task<IActionResult> Users()
         {
-            var users = _userService.GetUsers();
+            var users = await _userService.GetUsersAsync();
             
             return View(users);
         }
 
         //renders the login form
-        public IActionResult Login()
+        public async Task<IActionResult> Login()
         {
             //var initial = new LoginVM(); you can remove this or just pass it through thsn
             return View(new LoginVM());
         }
 
-        public IActionResult LoginSubmitted(LoginVM loginVM)
+        public async Task<IActionResult> LoginSubmitted(LoginVM loginVM)
         {
             if (!ModelState.IsValid)
             {
@@ -42,12 +42,12 @@ namespace Shortly_Client.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult Register()
+        public async  Task<IActionResult> Register()
         {
             return View(new RegisterVM());
         }
 
-        public IActionResult RegisterUser(RegisterVM registerVM)
+        public async  Task<IActionResult>  RegisterUser(RegisterVM registerVM)
         {
             if (!ModelState.IsValid)
             {
