@@ -10,19 +10,22 @@ namespace Shortly_Data.Services
     public interface IUsersService
     {
         //Returns all users
-        Task<List<User>> GetUsersAsync();
+        Task<List<AppUser>> GetUsersAsync();
 
-        //Create User
-        Task<User> AddUserAsync(User user);
+        ////Create User
+        //Task<AppUser> AddUserAsync(AppUser user);
 
-        //Get User by Id
-        Task<User> GetUserByIdAsync(int id);
+        ////Get User by Id
+        //Task<AppUser> GetUserByIdAsync(string id);
 
-        //Update user
+        ////Update user
 
-        Task<User> UpdateUserAsync(int id, User user);
+        //Task<AppUser> UpdateUserAsync(string id, AppUser user);
 
-        //Delete User
-        Task DeleteUserAsync(int id);
+        ////Delete User
+        //Task DeleteUserAsync(string id);
+
+        //we removed above methods, because we are using these againg with the help of usermanager and roleManager components which the asp.net identity provides
+
     }
 }

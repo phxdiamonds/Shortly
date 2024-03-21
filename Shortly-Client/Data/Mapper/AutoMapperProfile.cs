@@ -15,7 +15,7 @@ namespace Shortly_Client.Data.Mapper
 
             //Here we are mapping User with the GetUserVM
 
-            CreateMap<User, GetUserVM>().ReverseMap();
+            CreateMap<AppUser, GetUserVM>().ReverseMap();
         }
         
     }

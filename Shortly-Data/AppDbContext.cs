@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Shortly_Data.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Shortly_Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
         ////create the constructor and inject the dbcontext options as parameter
         //
@@ -21,7 +23,7 @@ namespace Shortly_Data
 
         public DbSet<Url> Urls { get; set; }
 
-        public DbSet<User> Users { get; set; }
+ 
       
     }
 }

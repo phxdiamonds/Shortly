@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,17 +7,15 @@ using System.Threading.Tasks;
 
 namespace Shortly_Data.Models
 {
-    public class User
+    public class AppUser : IdentityUser 
     {
         //if you want to set up urls when ever you create the user, youc can define in this constructor
-        public User()
+        public AppUser()
         {
             //here you can define each user has some urls
             //so with this when ever you are going to initialize the object of type user, you also initialize the urls
             Urls = new List<Url>();
         }
-        public int Id { get; set; }
-        public string Email { get; set; }
 
         public string? FullName { get; set; }
 

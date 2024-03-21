@@ -18,7 +18,7 @@ namespace Shortly_Data.Models
 
         public int NoOfClicks { get; set; }
 
-        public int? UserId { get; set; }
+        public string? UserId { get; set; }
 
         public DateTime DateCreated { get; set; }
 
@@ -29,6 +29,6 @@ namespace Shortly_Data.Models
         //Define a navigational property for the user
         //Used to get the user data for the url
 
-        public User? User { get; set; }
+        public AppUser? User { get; set; }
     }
 }

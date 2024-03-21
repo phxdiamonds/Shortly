@@ -15,6 +15,8 @@
                     asp-action="LoginSubmitted"
                     asp-controller="Authentication">
 
+                    <div asp-validation-summary="All" class="text-danger"></div>
+
                     <div class="form-group mb-3">
                         <lablel for="emailAddress">Email Address</lablel>
                         <input type="email" name="emailAddress"  asp-for="EmailAddress" class=" form-control" id="emailAddress" placeholder="Enter Email" />
