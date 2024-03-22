@@ -1,4 +1,5 @@
-﻿@model List<GetUrlVM>;
+﻿
+@model List<GetUrlVM>;
 
 @{
     ViewData["Title"] = "All Short Links";
@@ -19,7 +20,10 @@
             <th scope="col">Original Url</th>
             <th scope="col">Short Url</th>
             <th scope="col">Clicks</th>
-            <th scope="col">User</th>
+                @if (User.IsInRole(Roles.Admin))
+                {
+                    <th scope="col">User</th>
+                }         
             <th scope="col">Options</th>
             </tr>
         </thead>
@@ -31,7 +35,10 @@
                     <td>@url.OriginalLink</td>
                     <td>@url.ShortLink</td>
                     <td>@url.NoOfClicks</td>
-                    <td>@(url.User != null ? url.User.FullName: "-")</td>
+                    @if (User.IsInRole(Roles.Admin))
+                    {
+                        <td>@(url.User != null ? url.User.FullName : "-")</td>
+                    }
                     <td>
                         <a class="btn btn-outline-danger"
                            asp-controller="Url"

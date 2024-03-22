@@ -3,6 +3,7 @@ using Shortly_Client.Data.ViewModels;
 using Shortly_Data;
 using Shortly_Data.Models;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace Shortly_Client.Controllers
 {
@@ -37,8 +38,9 @@ namespace Shortly_Client.Controllers
                 return View("Index", postUrlVM);
             }
 
+            var loggedInUser = User.FindFirstValue(ClaimTypes.NameIdentifier);
             //Create an object of the Url
-            var newUrl = new Url() { OriginalLink = postUrlVM.Url, ShortLink = GenerateShortLink(6), NoOfClicks = 0, UserId = null,DateCreated = DateTime.UtcNow};
+            var newUrl = new Url() { OriginalLink = postUrlVM.Url, ShortLink = GenerateShortLink(6), NoOfClicks = 0, UserId = loggedInUser, DateCreated = DateTime.UtcNow};
 
             //add object to the EF Context
 

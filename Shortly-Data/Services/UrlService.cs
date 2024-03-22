@@ -28,12 +28,23 @@ namespace Shortly_Data.Services
             return url;
         }
 
-        public async  Task<List<Url>>  GetUrlsAsync()
+        public async  Task<List<Url>>  GetUrlsAsync(string userId, bool isAdmin)
         {
-            //Get the urls from db with users so we can include the user with Include 
-            var allUrls = await _context.Urls.Include(u => u.User).ToListAsync();
 
-            return allUrls;
+            //Get the urls from db with users so we can include the user with Include 
+            var allUrls =  _context.Urls.Include(u => u.User);
+
+            if (isAdmin)
+            {
+                return await allUrls.ToListAsync();
+            }
+            else
+            {
+                return await allUrls.Where(u => u.UserId == userId).ToListAsync();
+            }
+
+
+            
 
             
         }

@@ -11,7 +11,7 @@ namespace Shortly_Data.Services
     public interface IUrlsService
     {
         //Get allUrls
-        Task<List<Url>> GetUrlsAsync();
+        Task<List<Url>> GetUrlsAsync(string userId, bool isAdmin);
 
         //Add Url
        Task<Url> AddUrlAsync(Url url);

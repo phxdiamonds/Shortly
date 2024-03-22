@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Shortly_Client.Data.ViewModels;
+using Shortly_Client.Helpers.Roles;
 using Shortly_Data;
 using Shortly_Data.Models;
 using Shortly_Data.Services;
+using System.Security.Claims;
 
 namespace Shortly_Client.Controllers
 {
@@ -37,9 +39,20 @@ namespace Shortly_Client.Controllers
 
             //}).ToList();
 
+            //Need to check the user is Admin or not, and need to have logged in id
+
+            var LoggedInUser = User.FindFirstValue(ClaimTypes.NameIdentifier);//returns user id
+            var isAdmin = User.IsInRole(Roles.Admin);
+
+
+
+              
+
             //Replacing the above code with mapper
 
-            var allUrlsFromDb = await  _urlService.GetUrlsAsync();
+
+
+            var allUrlsFromDb = await  _urlService.GetUrlsAsync(LoggedInUser, isAdmin );
             var mappedUrls = _mapper.Map<List<GetUrlVM>>(allUrlsFromDb);
 
             //another way is doing is mapping both the source and destination
